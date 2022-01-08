@@ -18,6 +18,8 @@ Read on below for project specifics.
 2. [Project Comments](#project-comments)
 4. [Other](#other)
 
+![image](https://user-images.githubusercontent.com/4059636/148651023-9dd991d7-45ab-4d5c-bebc-95bec4086960.png)
+
 ## Game Design Document (TODO)
 
 1. Overall Vision
