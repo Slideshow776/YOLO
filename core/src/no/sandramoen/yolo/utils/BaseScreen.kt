@@ -10,15 +10,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.viewport.StretchViewport
-import no.sandramoen.yolo.no.sandramoen.yolo.utils.Transition
 
 abstract class BaseScreen : Screen, InputProcessor {
     protected var mainStage: Stage
-    protected var uiStage: Stage
-    private var transitionStage: Stage
+    private var uiStage: Stage
+    protected var transitionStage: Stage
     protected var uiTable: Table
     protected var camera: OrthographicCamera
-    var transition: Transition
 
     init {
         mainStage = Stage()
@@ -38,9 +36,11 @@ abstract class BaseScreen : Screen, InputProcessor {
 
         transitionStage.viewport = StretchViewport(BaseGame.WORLD_WIDTH, BaseGame.WORLD_HEIGHT, camera)
         transitionStage.viewport.apply()
-        transition = Transition(0f, 0f, transitionStage)
 
         initialize()
+
+        val transition = Transition(0f, 0f, transitionStage)
+        transition.fadeOut()
     }
 
     abstract fun initialize()

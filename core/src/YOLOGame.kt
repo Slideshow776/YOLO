@@ -1,8 +1,8 @@
 package no.sandramoen.yolo
 
+import no.sandramoen.yolo.screens.gameplay.LevelScreen
 import no.sandramoen.yolo.utils.BaseGame
 import no.sandramoen.yolo.utils.GooglePlayServices
-
 
 class YOLOGame(googlePlayServices: GooglePlayServices?, appLocale: String) : BaseGame(googlePlayServices, appLocale) {
 
@@ -14,7 +14,6 @@ class YOLOGame(googlePlayServices: GooglePlayServices?, appLocale: String) : Bas
         // setActiveScreen(MenuScreen())
         // setActiveScreen(OptionsScreen())
 
-        // setActiveScreen(ClassicScreen())
-        // setActiveScreen(ChallengeScreen())
+        setActiveScreen(LevelScreen())
     }
 }

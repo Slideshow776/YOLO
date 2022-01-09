@@ -1,6 +1,5 @@
 package no.sandramoen.yolo.utils
 
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -155,61 +154,6 @@ open class BaseActor(x: Float, y: Float, s: Stage) : Group() {
 
     fun isAnimationFinished(): Boolean {
         return animation!!.isAnimationFinished(animationTime)
-    }
-
-    // Physics ---------------------------------------------------------------------------------------------------
-    fun setSpeed(speed: Float) {
-        // If length is zero, then assume motion angle is zero degrees
-        if (velocityVec.len() == 0f)
-            velocityVec.set(speed, 0f)
-        else
-            velocityVec.setLength(speed)
-    }
-
-    fun getSpeed() = velocityVec.len()
-    fun setMotionAngle(angle: Float) {
-        velocityVec.setAngle(angle)
-    }
-
-    fun getMotionAngle() = velocityVec.angleDeg()
-    fun getVelocity() = velocityVec
-    fun setVelocity(vel: Vector2) { velocityVec = vel }
-    fun isMoving() = getSpeed() > 0
-    fun setAcceleration(acc: Float) {
-        acceleration = acc
-    }
-
-    fun accelerateAtAngle(angle: Float) = accelerationVec.add(Vector2(acceleration, 0f).setAngle(angle))
-    fun accelerateForward() = accelerateAtAngle(rotation)
-    fun setMaxSpeed(ms: Float) {
-        maxSpeed = ms
-    }
-
-    fun setDeceleration(dec: Float) {
-        deceleration = dec
-    }
-
-    fun applyPhysics(dt: Float) {
-        // apply acceleration
-        velocityVec.add(accelerationVec.x * dt, accelerationVec.y * dt)
-
-        var speed = getSpeed()
-
-        // decrease speed (decelerate) when not accelerating
-        if (accelerationVec.len() == 0f)
-            speed -= deceleration * dt
-
-        // keep speed within set bounds
-        speed = MathUtils.clamp(speed, 0f, maxSpeed)
-
-        // update velocity
-        setSpeed(speed)
-
-        // apply velocity
-        moveBy(velocityVec.x * dt, velocityVec.y * dt)
-
-        // reset acceleration
-        accelerationVec.set(0f, 0f)
     }
 
     // camera ---------------------------------------------------------------------------------------------------
