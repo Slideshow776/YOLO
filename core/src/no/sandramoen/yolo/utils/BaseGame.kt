@@ -51,7 +51,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
         var labelStyle: LabelStyle? = null
         var textButtonStyle: TextButtonStyle? = null
         var textureAtlas: TextureAtlas? = null
-        var skin: Skin? = null
+        var churchBell: Sound? = null
 
         // game state
         var prefs: Preferences? = null
@@ -88,7 +88,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             // assetManager.load("audio/music/251461__joshuaempyre__arcade-music-loop.wav", Music::class.java)
 
             // sounds
-            // assetManager.load("audio/sound/blip.wav", Sound::class.java)
+            assetManager.load("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
 
             // fonts
             val resolver = InternalFileHandleResolver()
@@ -112,7 +112,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             // audio
             // levelMusic = assetManager.get("audio/music/251461__joshuaempyre__arcade-music-loop.wav", Music::class.java)
 
-            // blipSound = assetManager.get("audio/sound/blip.wav", Sound::class.java)
+            churchBell = assetManager.get("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
 
             // text files
             // defaultShader = assetManager.get("shaders/default.vs", Text::class.java).getString()
