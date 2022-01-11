@@ -14,13 +14,13 @@ A hyper-casual game about how much time someone's life may be.
 Read on below for project specifics.
 
 1. [Game Design Document](#game-design-document)
-2. [Audio Licences Used](#audio-licences-used)
+2. [Attributions](#attributions)
 2. [Project Comments](#project-comments)
 4. [Other](#other)
 
-![image](https://user-images.githubusercontent.com/4059636/148651023-9dd991d7-45ab-4d5c-bebc-95bec4086960.png)
+![image](https://user-images.githubusercontent.com/4059636/148922367-7bd1e836-48ae-487a-b61d-911f0fa83ad9.png)
 
-## Game Design Document (TODO)
+## Game Design Document
 
 1. Overall Vision
     * **Write a short paragraph explaining the game:**
@@ -100,7 +100,8 @@ Read on below for project specifics.
     * **What are the plans for publication?**
     This game will be made available for free on desktop. It will be deployed on the Google Play store for a small fee and advertised to various indie game-portal websites (LibGDX, Reddit, ...). Gameplay images and a trailer video will be posted and marketed via social media.
 
-## Audio Licences Used
+## Attributions
+* Characters: [Life Cycle Vectors by Vecteezy](https://www.vecteezy.com/free-vector/life-cycle)
 
 ## Project comments
 
