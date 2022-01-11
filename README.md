@@ -102,6 +102,7 @@ Read on below for project specifics.
 
 ## Attributions
 * Characters: [Life Cycle Vectors by Vecteezy](https://www.vecteezy.com/free-vector/life-cycle)
+* Tombstone: [Tomb Stone Vectors by Vecteezy](https://www.vecteezy.com/free-vector/tomb-stone)
 
 ## Project comments
 
