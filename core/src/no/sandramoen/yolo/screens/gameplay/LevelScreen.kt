@@ -2,6 +2,7 @@ package no.sandramoen.yolo.screens.gameplay
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.LifeImages
@@ -17,6 +18,7 @@ class LevelScreen : BaseScreen() {
     private lateinit var scoreLabel: Label
     private lateinit var ageLabel: Label
 
+    private var gameScore = 0
     private var currentLifePhase: Int = 1
     private var rawCurrentScore: Float = 0f
     private val lifePhases: Int = 5
@@ -44,9 +46,7 @@ class LevelScreen : BaseScreen() {
         // uiTable.debug = true
     }
 
-    override fun update(dt: Float) {
-
-    }
+    override fun update(dt: Float) {}
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
         if (currentLifePhase <= lifePhases)
@@ -60,11 +60,11 @@ class LevelScreen : BaseScreen() {
         rawCurrentScore = performance
         val score: Int = (((numDaysInYear * maxYears) / lifePhases) * performance).toInt()
 
-        val finalScore = scoreLabel.text.toString().toInt() + score
-        scoreLabel.setText("$finalScore")
+        gameScore += score
+        setCountingText(scoreLabel, gameScore.toFloat(), scoreLabel.text.toString().toFloat(), true)
 
-        val years: Float = (finalScore / numDaysInYear.toFloat()).toBigDecimal().setScale(1, RoundingMode.UP).toFloat()
-        ageLabel.setText("$years")
+        val years: Float = (gameScore / numDaysInYear.toFloat()).toBigDecimal().setScale(1, RoundingMode.UP).toFloat()
+        setCountingText(ageLabel, years, ageLabel.text.toString().toFloat())
     }
 
     private fun progress() {
@@ -81,25 +81,58 @@ class LevelScreen : BaseScreen() {
         scoreLabel.setText("0")
         ageLabel.setText("0")
         currentLifePhase = 1
-        lifeImages.setImage(currentLifePhase)
+        lifeImages.setImage(0)
         metronome.restart()
         rawCurrentScore = 0f
+        gameScore = 0
     }
 
     private fun checkpoint() {
-        val score = scoreLabel.text.toString().toInt()
         val difficulty = .5f
-        val pass = score >= ((numDaysInYear * maxYears) / lifePhases) * difficulty * currentLifePhase
+        val pass = gameScore >= ((numDaysInYear * maxYears) / lifePhases) * difficulty * currentLifePhase
 
         if (pass) {
             currentLifePhase++
-            lifeImages.setImage(currentLifePhase)
-            if (currentLifePhase == lifePhases + 1)
-                BaseGame.churchBell!!.play(BaseGame.soundVolume)
+            if (currentLifePhase == lifePhases + 1) {
+                BaseGame.churchBellSound!!.play(BaseGame.soundVolume)
+                lifeImages.setImage(101)
+            } else {
+                lifeImages.setImage(gameScore/365)
+            }
         } else {
             currentLifePhase = lifePhases + 1
-            lifeImages.setImage(currentLifePhase)
-            BaseGame.churchBell!!.play(BaseGame.soundVolume)
+            lifeImages.setImage(101)
+            BaseGame.churchBellSound!!.play(BaseGame.soundVolume, .5f, 0f)
         }
+    }
+
+    private fun setCountingText(label: Label, number: Float, previousNumber: Float, convertToInt: Boolean = false) {
+        var counter = previousNumber
+        val increment = number / 50f
+        val duration = .01f
+        var pitchCounter = 1.5f
+        label.addAction(
+            Actions.forever(
+                Actions.sequence(
+                    Actions.run {
+                        counter += increment
+                        if (counter > number) {
+                            label.clearActions()
+                            label.setText("$number")
+                        }
+                        BaseGame.countSound!!.play(BaseGame.soundVolume * .25f, pitchCounter, 0f)
+                        pitchCounter += 1 / 50f
+                        label.setText("${
+                            if (convertToInt) 
+                                counter.toBigDecimal().setScale(1, RoundingMode.UP).toFloat().toInt()
+                            else
+                                counter.toBigDecimal().setScale(1, RoundingMode.UP).toFloat()
+                            }"
+                        )
+                    },
+                    Actions.delay(duration)
+                )
+            )
+        )
     }
 }

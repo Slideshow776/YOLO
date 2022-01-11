@@ -8,7 +8,6 @@ import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetErrorListener
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
-import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture.TextureFilter
@@ -20,13 +19,10 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle
-import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable
 import com.badlogic.gdx.utils.I18NBundle
 import kotlin.system.measureTimeMillis
-import com.badlogic.gdx.assets.loaders.I18NBundleLoader.I18NBundleParameter
-import java.util.Locale
 
 abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: String) : Game(), AssetErrorListener {
     private val tag = "BaseGame.kt"
@@ -51,7 +47,8 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
         var labelStyle: LabelStyle? = null
         var textButtonStyle: TextButtonStyle? = null
         var textureAtlas: TextureAtlas? = null
-        var churchBell: Sound? = null
+        var churchBellSound: Sound? = null
+        var countSound: Sound? = null
 
         // game state
         var prefs: Preferences? = null
@@ -89,6 +86,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
 
             // sounds
             assetManager.load("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
+            assetManager.load("audio/sound/Blip_Select34.wav", Sound::class.java)
 
             // fonts
             val resolver = InternalFileHandleResolver()
@@ -112,7 +110,8 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             // audio
             // levelMusic = assetManager.get("audio/music/251461__joshuaempyre__arcade-music-loop.wav", Music::class.java)
 
-            churchBell = assetManager.get("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
+            churchBellSound = assetManager.get("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
+            countSound = assetManager.get("audio/sound/Blip_Select34.wav", Sound::class.java)
 
             // text files
             // defaultShader = assetManager.get("shaders/default.vs", Text::class.java).getString()
