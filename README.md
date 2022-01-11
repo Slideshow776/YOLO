@@ -18,7 +18,7 @@ Read on below for project specifics.
 2. [Project Comments](#project-comments)
 4. [Other](#other)
 
-![image](https://user-images.githubusercontent.com/4059636/148922073-63d6a679-7130-4c5b-9ea3-9dc2d9ffc6c8.png)
+![image](https://user-images.githubusercontent.com/4059636/148922367-7bd1e836-48ae-487a-b61d-911f0fa83ad9.png)
 
 ## Game Design Document (TODO)
 
