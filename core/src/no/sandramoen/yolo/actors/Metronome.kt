@@ -1,7 +1,9 @@
 package no.sandramoen.yolo.no.sandramoen.yolo.actors
 
+import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.MathUtils.ceil
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import no.sandramoen.yolo.utils.BaseActor
 import no.sandramoen.yolo.utils.GameUtils.Companion.normalizeValues
 import kotlin.math.floor
@@ -62,7 +64,14 @@ class Metronome(x: Float, y: Float, s: Stage) : BaseActor(x, y, s) {
     }
 
     fun restart() {
-        stop = false
-        pendulum.setPosition(pendulum.maxLeftPosition, (y + height / 2) - pendulum.height / 2)
+        val duration = MathUtils.random(0f, .2f)
+        addAction(Actions.sequence(
+            Actions.delay(duration),
+            Actions.run { stop = false }
+        ))
+        if (MathUtils.randomBoolean())
+            pendulum.setPosition(pendulum.maxLeftPosition + 1, (y + height / 2) - pendulum.height / 2)
+        else
+            pendulum.setPosition(pendulum.maxRightPosition - 1, (y + height / 2) - pendulum.height / 2)
     }
 }

@@ -49,6 +49,8 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
         var textureAtlas: TextureAtlas? = null
         var churchBellSound: Sound? = null
         var countSound: Sound? = null
+        var defaultShader: String? = null
+        var constellationShader: String? = null
 
         // game state
         var prefs: Preferences? = null
@@ -95,7 +97,8 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             assetManager.setLoader(Text::class.java, TextLoader(InternalFileHandleResolver()))
 
             // shaders
-            // assetManager.load(AssetDescriptor("shaders/default.vs", Text::class.java, TextLoader.TextParameter()))
+            assetManager.load(AssetDescriptor("shaders/default.vs", Text::class.java, TextLoader.TextParameter()))
+            assetManager.load(AssetDescriptor("shaders/constellation.fs", Text::class.java, TextLoader.TextParameter()))
 
             // skins
             // assetManager.load("skins/arcade/arcade.json", Skin::class.java)
@@ -114,7 +117,8 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             countSound = assetManager.get("audio/sound/Blip_Select34.wav", Sound::class.java)
 
             // text files
-            // defaultShader = assetManager.get("shaders/default.vs", Text::class.java).getString()
+            defaultShader = assetManager.get("shaders/default.vs", Text::class.java).getString()
+            constellationShader = assetManager.get("shaders/constellation.fs", Text::class.java).getString()
 
             // skin
             // skin = assetManager.get("skins/arcade/arcade.json", Skin::class.java)
