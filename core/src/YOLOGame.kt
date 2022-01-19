@@ -11,6 +11,6 @@ class YOLOGame(googlePlayServices: GooglePlayServices?, appLocale: String) : Bas
         super.create()
 
         setActiveScreen(SplashScreen()) // TODO: @release: change to this
-        setActiveScreen(LevelScreen())
+        // setActiveScreen(LevelScreen())
     }
 }

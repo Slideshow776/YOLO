@@ -50,15 +50,6 @@ class CharacterHandler(s: Stage) {
     }
 
     private fun makeAllImagesInvisible(duration: Float = 0f) {
-        /*seventyToOneHundred.makeTransparent()
-        fiftyToSeventy.makeTransparent()
-        thirtyToFifty.makeTransparent()
-        twentyToThirty.makeTransparent()
-        fifteenToTwenty.makeTransparent()
-        tenToFifteen.makeTransparent()
-        zero.makeTransparent()
-        dead.color.a = 0f*/
-
         seventyToOneHundred.fadeOut(duration)
         fiftyToSeventy.fadeOut(duration)
         thirtyToFifty.fadeOut(duration)
