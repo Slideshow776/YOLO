@@ -1,4 +1,6 @@
 # YOLO
+![feature graphic](https://user-images.githubusercontent.com/4059636/150122924-6bff2e72-d46a-4ffd-a00a-58cc508516eb.png)
+
 A hyper-casual game about how much time someone's life may be.
 
 >A hyper-casual game is a mobile video game which is easy-to-play, and usually free-to-play; they also feature very minimalistic user interfaces.
