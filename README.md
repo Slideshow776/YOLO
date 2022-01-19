@@ -5,9 +5,8 @@ A hyper-casual game about how much time someone's life may be.
 >
 >[_-Wikipedia_](https://en.wikipedia.org/wiki/Hyper-casual_game)
 
-* ~~Youtube trailer~~
-* ~~Click here to play on Google Play!~~
-* ~~Click here to play for free on Desktop!~~
+* [Youtube trailer](https://youtu.be/WjQctCWysBI)
+* [Click here to play for free on Desktop and Android!](https://github.com/Slideshow776/YOLO/tree/main/release)
 
 [Project Kanban Board](https://github.com/Slideshow776/YOLO/projects/1?add_cards_query=is%3Aopen)
 
