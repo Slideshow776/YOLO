@@ -2,16 +2,21 @@ package no.sandramoen.yolo.screens.gameplay
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
+import com.badlogic.gdx.utils.Array
 import no.sandramoen.yolo.actors.Background
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.CharacterHandler
+import no.sandramoen.yolo.no.sandramoen.yolo.actors.FallingStarsEffect
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.Metronome
+import no.sandramoen.yolo.no.sandramoen.yolo.actors.ParticleActor
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.character.*
 import no.sandramoen.yolo.utils.BaseGame
 import no.sandramoen.yolo.utils.BaseScreen
 import java.math.RoundingMode
+import kotlin.math.sqrt
 
 class LevelScreen : BaseScreen() {
     private var tag = "LevelScreen"
@@ -21,6 +26,8 @@ class LevelScreen : BaseScreen() {
     private lateinit var scoreLabel: Label
     private lateinit var ageLabel: Label
 
+    private var averageScore = 0f
+    private lateinit var scores: Array<Float>
     private var gameScore = 0
     private var currentLifePhase: Int = 1
     private var rawCurrentScore: Float = 0f
@@ -48,6 +55,13 @@ class LevelScreen : BaseScreen() {
 
         uiTable.top()
         // uiTable.debug = true
+
+        // miscellaneous
+        BaseGame.levelMusic!!.play()
+        BaseGame.levelMusic!!.volume = BaseGame.musicVolume
+        BaseGame.levelMusic!!.isLooping = true
+
+        scores = Array()
     }
 
     override fun update(dt: Float) {}
@@ -57,6 +71,15 @@ class LevelScreen : BaseScreen() {
             progress()
         else
             restart()
+
+        // touch effect
+        var effect: ParticleActor = FallingStarsEffect()
+        effect.setScale(Gdx.graphics.height * .00003f)
+        var worldCoordinates = camera.unproject(Vector3(screenX.toFloat(), screenY.toFloat(),0f))
+        effect.setPosition(worldCoordinates.x, worldCoordinates.y)
+        mainStage.addActor(effect)
+        effect.start()
+
         return super.touchDown(screenX, screenY, pointer, button)
     }
 
@@ -77,6 +100,9 @@ class LevelScreen : BaseScreen() {
         else {
             metronome.stop = true
             calculateAndDisplayScore(metronome.getScore())
+            calculateAverage()
+            adjustMetronomeSpeed()
+
             checkpoint()
         }
     }
@@ -137,5 +163,17 @@ class LevelScreen : BaseScreen() {
                 )
             )
         )
+    }
+
+    private fun calculateAverage() {
+        scores.add(metronome.getScore())
+        var temp = 0f
+        for (score in scores)
+            temp += score
+        averageScore = temp / scores.size
+    }
+
+    private fun adjustMetronomeSpeed() {
+        metronome.adjustSpeed(1 + sqrt(averageScore))
     }
 }

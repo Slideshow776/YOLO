@@ -1,5 +1,6 @@
 package no.sandramoen.yolo.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
@@ -21,7 +22,7 @@ public class DesktopLauncher {
 		// miscellaneous
 		config.title = "YOLO";
 		config.resizable = false;
-		// config.addIcon("images/excluded/ic_launcher-desktop.png", Files.FileType.Internal);
+		config.addIcon("images/excluded/ic_launcher-desktop.png", Files.FileType.Internal);
 
 		new LwjglApplication(new YOLOGame(null, "en"), config);
 	}

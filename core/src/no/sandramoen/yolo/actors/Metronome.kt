@@ -25,6 +25,7 @@ class Metronome(x: Float, y: Float, s: Stage) : BaseActor(x, y, s) {
         pendulum.middlePosition = this.x + width / 2 - pendulum.width / 2
         pendulum.setPosition(this.x, y - pendulum.height / 2) // left
         pendulum.speed = .01f * width
+        pendulum.originalSpeed = pendulum.speed
     }
 
     override fun act(dt: Float) {
@@ -73,5 +74,9 @@ class Metronome(x: Float, y: Float, s: Stage) : BaseActor(x, y, s) {
             pendulum.setPosition(pendulum.maxLeftPosition + 1, (y + height / 2) - pendulum.height / 2)
         else
             pendulum.setPosition(pendulum.maxRightPosition - 1, (y + height / 2) - pendulum.height / 2)
+    }
+
+    fun adjustSpeed(modifier: Float) {
+        pendulum.speed = pendulum.originalSpeed * modifier - .5f
     }
 }

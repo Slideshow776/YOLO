@@ -12,6 +12,7 @@ class Pendulum(x: Float, y: Float, s: Stage, parent: BaseActor) : BaseActor(x, y
     var middlePosition = 0f
     var maxRightPosition = 0f
     var speed = 0f
+    var originalSpeed = 0f
 
     init {
         loadImage("whitePixel")

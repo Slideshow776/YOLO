@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetErrorListener
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
+import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture.TextureFilter
@@ -47,16 +48,18 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
         var labelStyle: LabelStyle? = null
         var textButtonStyle: TextButtonStyle? = null
         var textureAtlas: TextureAtlas? = null
+        var levelMusic: Music? = null
         var churchBellSound: Sound? = null
         var countSound: Sound? = null
         var defaultShader: String? = null
         var constellationShader: String? = null
+        var shockwaveShader: String? = null
 
         // game state
         var prefs: Preferences? = null
         var loadPersonalParameters = false
         var soundVolume = .75f
-        var musicVolume = .125f
+        var musicVolume = .25f
         var isGPS = false
         var myBundle: I18NBundle? = null
         var currentLocale: String? = null
@@ -84,7 +87,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             assetManager.load("images/included/packed/yolo.pack.atlas", TextureAtlas::class.java)
 
             // music
-            // assetManager.load("audio/music/251461__joshuaempyre__arcade-music-loop.wav", Music::class.java)
+            assetManager.load("audio/music/325647__shadydave__expressions-of-the-mind-piano-loop.mp3", Music::class.java)
 
             // sounds
             assetManager.load("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
@@ -99,6 +102,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             // shaders
             assetManager.load(AssetDescriptor("shaders/default.vs", Text::class.java, TextLoader.TextParameter()))
             assetManager.load(AssetDescriptor("shaders/constellation.fs", Text::class.java, TextLoader.TextParameter()))
+            assetManager.load(AssetDescriptor("shaders/shockwave.fs", Text::class.java, TextLoader.TextParameter()))
 
             // skins
             // assetManager.load("skins/arcade/arcade.json", Skin::class.java)
@@ -111,7 +115,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             textureAtlas = assetManager.get("images/included/packed/yolo.pack.atlas") // all images are found in this global static variable
 
             // audio
-            // levelMusic = assetManager.get("audio/music/251461__joshuaempyre__arcade-music-loop.wav", Music::class.java)
+            levelMusic = assetManager.get("audio/music/325647__shadydave__expressions-of-the-mind-piano-loop.mp3", Music::class.java)
 
             churchBellSound = assetManager.get("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
             countSound = assetManager.get("audio/sound/Blip_Select34.wav", Sound::class.java)
@@ -119,6 +123,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             // text files
             defaultShader = assetManager.get("shaders/default.vs", Text::class.java).getString()
             constellationShader = assetManager.get("shaders/constellation.fs", Text::class.java).getString()
+            shockwaveShader = assetManager.get("shaders/shockwave.fs", Text::class.java).getString()
 
             // skin
             // skin = assetManager.get("skins/arcade/arcade.json", Skin::class.java)
