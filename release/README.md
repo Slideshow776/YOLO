@@ -11,7 +11,7 @@
  
  ## To play on Andoid:
 1. Click `YOLO.apk`
-2. Download the file.
+2. Click The three lowest horizontal dots to download the file.
 3. Consent to any warnings about installing the app
 4. Install and play
  
