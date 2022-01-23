@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Label
+import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Array
 import no.sandramoen.yolo.actors.Background
@@ -13,8 +14,10 @@ import no.sandramoen.yolo.no.sandramoen.yolo.actors.FallingStarsEffect
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.Metronome
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.ParticleActor
 import no.sandramoen.yolo.no.sandramoen.yolo.actors.character.*
+import no.sandramoen.yolo.no.sandramoen.yolo.ui.MadeByLabel
 import no.sandramoen.yolo.utils.BaseGame
 import no.sandramoen.yolo.utils.BaseScreen
+import no.sandramoen.yolo.utils.GameUtils
 import java.math.RoundingMode
 import kotlin.math.sqrt
 
@@ -25,6 +28,7 @@ class LevelScreen : BaseScreen() {
     private lateinit var characeter: Zero
     private lateinit var scoreLabel: Label
     private lateinit var ageLabel: Label
+    private lateinit var madeByLabel: MadeByLabel
 
     private var averageScore = 0f
     private lateinit var scores: Array<Float>
@@ -44,17 +48,19 @@ class LevelScreen : BaseScreen() {
         // ui
         scoreLabel = Label("0", BaseGame.labelStyle)
         scoreLabel.setAlignment(Align.center)
-        uiTable.add(scoreLabel).fill().padTop(Gdx.graphics.height * .08f).row()
+        uiTable.add(scoreLabel).padTop(Gdx.graphics.height * .08f).row()
 
         ageLabel = Label("0", BaseGame.labelStyle)
         ageLabel.setScale(.8f)
         ageLabel.setFontScale(.8f)
         ageLabel.setAlignment(Align.center)
         ageLabel.color = Color.OLIVE
-        uiTable.add(ageLabel).fill()
+        uiTable.add(ageLabel).row()
 
-        uiTable.top()
-        // uiTable.debug = true
+        madeByLabel = MadeByLabel()
+        uiTable.add(madeByLabel).expandY().bottom().padBottom(Gdx.graphics.height * .08f)
+
+        /*uiTable.debug = true*/
 
         // miscellaneous
         BaseGame.levelMusic!!.play()
@@ -67,6 +73,9 @@ class LevelScreen : BaseScreen() {
     override fun update(dt: Float) {}
 
     override fun touchDown(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+        if (GameUtils.isWidgetTouched(screenX, screenY, madeByLabel))
+            return super.touchDown(screenX, screenY, pointer, button)
+
         if (currentLifePhase <= lifePhases)
             progress()
         else
@@ -75,7 +84,7 @@ class LevelScreen : BaseScreen() {
         // touch effect
         var effect: ParticleActor = FallingStarsEffect()
         effect.setScale(Gdx.graphics.height * .00003f)
-        var worldCoordinates = camera.unproject(Vector3(screenX.toFloat(), screenY.toFloat(),0f))
+        var worldCoordinates = camera.unproject(Vector3(screenX.toFloat(), screenY.toFloat(), 0f))
         effect.setPosition(worldCoordinates.x, worldCoordinates.y)
         mainStage.addActor(effect)
         effect.start()

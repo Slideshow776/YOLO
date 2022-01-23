@@ -49,6 +49,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
         var textButtonStyle: TextButtonStyle? = null
         var textureAtlas: TextureAtlas? = null
         var levelMusic: Music? = null
+        var clickSound: Sound? = null
         var churchBellSound: Sound? = null
         var countSound: Sound? = null
         var defaultShader: String? = null
@@ -92,6 +93,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
             // sounds
             assetManager.load("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
             assetManager.load("audio/sound/Blip_Select34.wav", Sound::class.java)
+            assetManager.load("audio/sound/click1.wav", Sound::class.java)
 
             // fonts
             val resolver = InternalFileHandleResolver()
@@ -119,6 +121,7 @@ abstract class BaseGame(var googlePlayServices: GooglePlayServices?, appLocale: 
 
             churchBellSound = assetManager.get("audio/sound/259278__akke-h__church-bell-fischerhude-short.wav", Sound::class.java)
             countSound = assetManager.get("audio/sound/Blip_Select34.wav", Sound::class.java)
+            clickSound = assetManager.get("audio/sound/click1.wav", Sound::class.java)
 
             // text files
             defaultShader = assetManager.get("shaders/default.vs", Text::class.java).getString()

@@ -154,5 +154,19 @@ class GameUtils {
                     Actions.alpha(1f, duration / 2)
             )))
         }
+
+        /**
+         * Checks if [widget] was touched based on [screenX] and [screenY].
+         */
+        fun isWidgetTouched(screenX: Int, screenY: Int, widget: Widget) : Boolean {
+            var convertedScreenY = Gdx.graphics.height - screenY
+            if (
+                screenX >= widget.x && screenX <= widget.x + widget.prefWidth &&
+                convertedScreenY >= widget.y && convertedScreenY <= widget.y + widget.prefHeight
+            ) {
+                return true
+            }
+            return false
+        }
     }
 }

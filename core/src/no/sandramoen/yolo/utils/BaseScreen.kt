@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport
 
 abstract class BaseScreen : Screen, InputProcessor {
     protected var mainStage: Stage
-    private var uiStage: Stage
+    protected var uiStage: Stage
     protected var transitionStage: Stage
     protected var uiTable: Table
     protected var camera: OrthographicCamera
