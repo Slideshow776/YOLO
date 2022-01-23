@@ -1,13 +1,14 @@
 # YOLO
+![feature graphic](https://user-images.githubusercontent.com/4059636/150122924-6bff2e72-d46a-4ffd-a00a-58cc508516eb.png)
+
 A hyper-casual game about how much time someone's life may be.
 
 >A hyper-casual game is a mobile video game which is easy-to-play, and usually free-to-play; they also feature very minimalistic user interfaces.
 >
 >[_-Wikipedia_](https://en.wikipedia.org/wiki/Hyper-casual_game)
 
-* ~~Youtube trailer~~
-* ~~Click here to play on Google Play!~~
-* ~~Click here to play for free on Desktop!~~
+* [Youtube trailer](https://youtu.be/WjQctCWysBI)
+* [Click here to play for free on Desktop and Android!](https://github.com/Slideshow776/YOLO/tree/main/release)
 
 [Project Kanban Board](https://github.com/Slideshow776/YOLO/projects/1?add_cards_query=is%3Aopen)
 
@@ -101,7 +102,7 @@ Read on below for project specifics.
     This game will be made available for free on desktop. It will be deployed on the Google Play store for a small fee and advertised to various indie game-portal websites (LibGDX, Reddit, ...). Gameplay images and a trailer video will be posted and marketed via social media.
 
 ## Attributions
-* Music: [expressions of the mind (Piano loop) by ShadyDave](https://freesound.org/people/ShadyDave/sounds/325647/) by 
+* Music: [expressions of the mind (Piano loop) by ShadyDave](https://freesound.org/people/ShadyDave/sounds/325647/) 
 * Characters: [Life Cycle Vectors by Vecteezy](https://www.vecteezy.com/free-vector/life-cycle)
 * Tombstone: [Tomb Stone Vectors by Vecteezy](https://www.vecteezy.com/free-vector/tomb-stone)
 
